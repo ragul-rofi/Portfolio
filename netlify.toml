@@ -1,7 +1,7 @@
 [build]
-  publish = "src"
+  publish = "."
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/src/index.html"
   status = 200
