@@ -18,7 +18,7 @@ function applyTheme(theme, animated = false) {
 
 function applyThemeWithPaintEffect(theme) {
   // Use custom SVG files for paint drip effect
-  const svgPath = theme === 'light' ? '../assests/White-paint-drop.svg' : '../assests/Black-paint-drop.svg';
+  const svgPath = theme === 'light' ? '/assests/White-paint-drop.svg' : '/assests/Black-paint-drop.svg';
   
   // Create main paint overlay with custom wavy dripping edge
   const overlay = document.createElement('div');
@@ -85,7 +85,7 @@ class MeteorCursor {
     this.pointerCursor = document.createElement('div');
     this.pointerCursor.className = 'pointer-cursor';
     const pointerImg = document.createElement('img');
-    pointerImg.src = '../assests/white-curosr-pointer.svg';
+    pointerImg.src = '/assests/white-curosr-pointer.svg';
     pointerImg.id = 'pointer-img';
     this.pointerCursor.appendChild(pointerImg);
     document.body.appendChild(this.pointerCursor);
@@ -164,7 +164,7 @@ class MeteorCursor {
       const pointerImg = document.getElementById('pointer-img');
       if (pointerImg) {
         const isLight = document.documentElement.classList.contains('light');
-        pointerImg.src = isLight ? '../assests/black-cursor-pointer.svg' : '../assests/white-curosr-pointer.svg';
+        pointerImg.src = isLight ? '/assests/black-cursor-pointer.svg' : '/assests/white-curosr-pointer.svg';
       }
     };
     
