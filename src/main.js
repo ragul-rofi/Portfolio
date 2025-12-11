@@ -245,84 +245,93 @@ class MeteorCursor {
   }
 }
 
-// Terminal Loading Animation
-class TerminalLoader {
+// Encrypted Text Loading Animation with Glitch Background
+class EncryptedTextLoader {
   constructor() {
-    this.commandElement = document.getElementById('typed-command');
-    this.outputElement = document.getElementById('terminal-output');
-    this.command = 'rag install ragul-portfolio';
-    this.currentIndex = 0;
+    this.textElement = document.getElementById('encrypted-text');
+    this.originalText = "Hello, It's Ragul here!";
+    this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
     
-    this.startTyping();
+    this.initGlitchBackground();
+    setTimeout(() => this.startEncryption(), 500);
   }
   
-  startTyping() {
-    const typeInterval = setInterval(() => {
-      if (this.currentIndex < this.command.length) {
-        this.commandElement.textContent += this.command[this.currentIndex];
-        this.currentIndex++;
-      } else {
-        clearInterval(typeInterval);
-        setTimeout(() => this.showOutput(), 500);
-      }
-    }, 80);
-  }
-  
-  showOutput() {
-    const outputs = [
-      { text: 'Resolving package...', delay: 300, class: 'output-info' },
-      { text: 'Fetching ragul-portfolio@latest', delay: 600, class: 'output-muted' },
-      { text: '✓ Package found', delay: 900, class: 'output-success' },
-      { text: 'Installing dependencies...', delay: 1200, class: 'output-info' },
-      { progress: true, delay: 1500 },
-      { text: '✓ Installation complete', delay: 3800, class: 'output-success' },
-      { text: 'Launching portfolio...', delay: 4200, class: 'output-info' }
-    ];
+  initGlitchBackground() {
+    const canvas = document.getElementById('glitch-canvas');
+    const ctx = canvas.getContext('2d');
     
-    outputs.forEach((output, index) => {
-      setTimeout(() => {
-        if (output.progress) {
-          this.showProgressBar();
-        } else {
-          const line = document.createElement('div');
-          line.className = `output-line ${output.class}`;
-          line.textContent = output.text;
-          this.outputElement.appendChild(line);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = [];
+    
+    // Initialize drops at random starting positions above the screen
+    for (let i = 0; i < columns; i++) {
+      drops[i] = Math.floor(Math.random() * -50);
+    }
+    
+    const glitchChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
+    
+    const draw = () => {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.fillStyle = 'rgba(13, 255, 0, 0.63)';
+      ctx.font = `${fontSize}px "Cascadia Code", monospace`;
+      
+      for (let i = 0; i < drops.length; i++) {
+        const text = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+        
+        ctx.fillText(text, x, y);
+        
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
         }
         
-        // Hide loading screen after last output
-        if (index === outputs.length - 1) {
-          setTimeout(() => this.hideLoadingScreen(), 800);
-        }
-      }, output.delay);
+        drops[i]++;
+      }
+    };
+    
+    this.glitchInterval = setInterval(draw, 50);
+    
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     });
   }
   
-  showProgressBar() {
-    const progressContainer = document.createElement('div');
-    progressContainer.className = 'output-line terminal-progress';
-    this.outputElement.appendChild(progressContainer);
+  startEncryption() {
+    let iteration = 0;
     
-    let progress = 0;
-    const totalBars = 30;
-    
-    const progressInterval = setInterval(() => {
-      progress += 2;
-      if (progress > 100) progress = 100;
+    const interval = setInterval(() => {
+      this.textElement.textContent = this.originalText
+        .split('')
+        .map((char, index) => {
+          if (char === ' ') return ' ';
+          
+          if (index < iteration) {
+            return this.originalText[index];
+          }
+          
+          return this.chars[Math.floor(Math.random() * this.chars.length)];
+        })
+        .join('');
       
-      const filledBars = Math.floor((progress / 100) * totalBars);
-      const emptyBars = totalBars - filledBars;
-      
-      const progressBar = '[' + '█'.repeat(filledBars) + '░'.repeat(emptyBars) + ']';
-      progressContainer.innerHTML = `<span class="output-info">${progressBar} ${progress}%</span>`;
-      
-      if (progress >= 100) {
-        clearInterval(progressInterval);
+      if (iteration >= this.originalText.length) {
+        clearInterval(interval);
+        setTimeout(() => this.hideLoadingScreen(), 800);
       }
-    }, 60);
+      
+      iteration += 1 / 4;
+    }, 50);
   }
   
   hideLoadingScreen() {
+    clearInterval(this.glitchInterval);
     const loadingScreen = document.getElementById('loading-screen');
     loadingScreen.classList.add('fade-out');
     setTimeout(() => {
@@ -333,8 +342,8 @@ class TerminalLoader {
 
 // Initialize on load
 window.addEventListener('DOMContentLoaded', () => {
-  // Start terminal loading animation
-  new TerminalLoader();
+  // Start encrypted text loading animation
+  new EncryptedTextLoader();
   
   // Set theme
   applyTheme(getPreferredTheme());

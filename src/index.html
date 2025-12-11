@@ -6,14 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Ragul Arumugam | Portfolio</title>
 
-    <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="../assests/favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assests/favicon/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assests/favicon/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../assests/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../assests/favicon/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="../assests/favicon/android-chrome-512x512.png">
-    <link rel="manifest" href="../assests/favicon/site.webmanifest">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assests/fav.png">
 
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/src/styles.css">
@@ -22,29 +16,11 @@
 </head>
 
 <body>
-    <!-- Terminal Loading Animation -->
+    <!-- Encrypted Text Loading Animation -->
     <div id="loading-screen" class="loading-screen">
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-buttons">
-                    <span class="btn-close"></span>
-                    <span class="btn-minimize"></span>
-                    <span class="btn-maximize"></span>
-                </div>
-                <div class="terminal-title"></div>
-            </div>
-            <div class="terminal-body">
-                <div class="terminal-line">
-                    <span class="prompt">$</span>
-                    <span class="command" id="typed-command"></span>
-                    <span class="cursor">_</span>
-                </div>
-                <div class="terminal-output" id="terminal-output"></div>
-                <div class="terminal-line" id="final-prompt" style="display: none;">
-                    <span class="prompt">$</span>
-                    <span class="cursor">_</span>
-                </div>
-            </div>
+        <canvas id="glitch-canvas" class="glitch-canvas"></canvas>
+        <div class="encrypted-text-container">
+            <h1 class="encrypted-text" id="encrypted-text"></h1>
         </div>
     </div>
 
@@ -114,8 +90,10 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="avatar-wrapper">
-                    <img src="../assests/me2.png" alt="Ragul Arumugam" class="avatar-img">
+                <div class="tilted-card-wrapper">
+                    <div class="tilted-card">
+                        <img src="../assests/me2.png" alt="Ragul Arumugam" class="avatar-img">
+                    </div>
                 </div>
             </div>
         </section>

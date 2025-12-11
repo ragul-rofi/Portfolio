@@ -267,6 +267,60 @@ html.light .cursive-text {
   display: flex;
   justify-content: center;
   align-items: center;
+  perspective: 1000px;
+}
+
+/* Tilted Card Effect */
+.tilted-card-wrapper {
+  width: 400px;
+  height: 400px;
+  transform-style: preserve-3d;
+}
+
+.tilted-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  padding: 4px;
+  transform: rotateY(-10deg) rotateX(5deg);
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+  box-shadow: 
+    -20px 20px 60px rgba(0, 0, 0, 0.3),
+    -5px 5px 20px rgba(59, 130, 246, 0.2);
+  cursor: pointer;
+}
+
+.tilted-card:hover {
+  transform: rotateY(0deg) rotateX(0deg) scale(1.05);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.4),
+    0 10px 30px rgba(59, 130, 246, 0.3);
+}
+
+.tilted-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tilted-card:hover::before {
+  opacity: 1;
 }
 
 .avatar-wrapper {
@@ -284,6 +338,8 @@ html.light .cursive-text {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: relative;
+  z-index: 0;
   border-radius: var(--radius-xl);
   background: var(--bg-secondary);
 }
@@ -700,9 +756,13 @@ html.light .cursive-text {
     justify-content: center;
   }
   
-  .avatar-wrapper {
+  .tilted-card-wrapper {
     width: 300px;
     height: 300px;
+  }
+  
+  .tilted-card {
+    transform: rotateY(-8deg) rotateX(4deg);
   }
   
   .contact-content {
@@ -754,9 +814,17 @@ html.light .cursive-text {
     justify-content: center;
   }
   
-  .avatar-wrapper {
+  .tilted-card-wrapper {
     width: 250px;
     height: 250px;
+  }
+  
+  .tilted-card {
+    transform: rotateY(-5deg) rotateX(3deg);
+  }
+  
+  .tilted-card:hover {
+    transform: rotateY(0deg) rotateX(0deg) scale(1.02);
   }
   
   .projects-grid,
@@ -920,7 +988,7 @@ html.light .meteor-trail {
   transform: rotate(-15deg);
 }
 
-/* Terminal Loading Screen */
+/* Encrypted Text Loading Screen */
 .loading-screen {
   position: fixed;
   top: 0;
@@ -941,160 +1009,47 @@ html.light .meteor-trail {
   visibility: hidden;
 }
 
-/* Terminal Window */
-.terminal-window {
-  width: 90%;
-  max-width: 800px;
-  background: #010101;
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  animation: terminalAppear 0.5s ease-out;
+/* Glitch Canvas Background */
+.glitch-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 1;
 }
 
-@keyframes terminalAppear {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-/* Terminal Header */
-.terminal-header {
-  background: #000000;
-  padding: 12px 16px;
+/* Encrypted Text Container */
+.encrypted-text-container {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #21262d;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem;
 }
 
-.terminal-buttons {
-  display: flex;
-  gap: 8px;
-}
-
-.terminal-buttons span {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  display: block;
-}
-
-.btn-close {
-  background: #797979;
-}
-
-.btn-minimize {
-  background: #797979;
-}
-
-.btn-maximize {
-  background: #27c93f;
-}
-
-.terminal-title {
-  flex: 1;
-  text-align: center;
-  color: #8b949e;
-  font-size: 13px;
-  font-family: 'Satoshi', monospace;
-}
-
-/* Terminal Body */
-.terminal-body {
-  padding: 20px;
-  font-family: 'Courier New', 'Consolas', monospace;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #c9d1d9;
-  min-height: 300px;
-}
-
-.terminal-line {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.prompt {
-  color: #58a6ff;
-  margin-right: 8px;
-  font-weight: bold;
-}
-
-.command {
-  color: #1dff37;
+.encrypted-text {
+  font-size: clamp(1.8rem, 4.5vw, 3.5rem);
   font-weight: 600;
+  color: #ffffff;
+  font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+               0 0 40px rgba(255, 255, 255, 0.5);
 }
 
-.cursor {
-  color: #58a6ff;
-  animation: blink 1s step-end infinite;
-  margin-left: 2px;
-}
-
-@keyframes blink {
-  0%, 50% {
-    opacity: 1;
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+                 0 0 40px rgba(255, 255, 255, 0.3);
   }
-  51%, 100% {
-    opacity: 0;
-  }
-}
-
-.terminal-output {
-  margin-top: 16px;
-  margin-left: 0;
-}
-
-.output-line {
-  margin-bottom: 4px;
-  opacity: 0;
-  animation: fadeInLine 0.3s ease-out forwards;
-}
-
-@keyframes fadeInLine {
-  from {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.output-success {
-  color: #1dff37;
-}
-
-.output-info {
-  color: #58a6ff;
-}
-
-.output-muted {
-  color: #8b949e;
-}
-
-/* Terminal Progress Bar */
-.terminal-progress {
-  font-family: 'Courier New', 'Consolas', monospace;
-  letter-spacing: -1px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .terminal-window {
-    width: 95%;
-  }
-  
-  .terminal-body {
-    font-size: 14px;
-    padding: 16px;
+  50% {
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+                 0 0 60px rgba(255, 255, 255, 0.5);
   }
 }
 
