@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Blog | Ragul Arumugam</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assests/fav.png">
+
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles.css">
+    <meta name="description"
+        content="Ragul Arumugam's blog — Thoughts on cloud computing, software engineering, and tech.">
+</head>
+
+<body>
+    <!-- Cinematic Ripple Overlay for Theme Transition -->
+    <div id="ripple-overlay" class="ripple-overlay"></div>
+
+    <!-- Logo -->
+    <div class="page-logo">
+        <img src="../assests/Logo-white.svg" alt="Ragul Arumugam Logo" class="logo-img logo-dark">
+        <img src="../assests/Logo-black.svg" alt="Ragul Arumugam Logo" class="logo-img logo-light">
+    </div>
+
+    <!-- Floating Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <!-- Hamburger Menu Button (Mobile Only) -->
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="index.html#contact">Contact</a>
+
+                <!-- Theme toggle inside menu on mobile -->
+                <button id="theme-toggle" class="theme-btn theme-btn-mobile" aria-label="Toggle theme">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                    <span class="theme-label">Toggle Theme</span>
+                </button>
+            </div>
+
+            <!-- Theme toggle for desktop -->
+            <button id="theme-toggle-desktop" class="theme-btn theme-btn-desktop" aria-label="Toggle theme">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Blog Header -->
+        <section class="blog-header">
+            <div class="blog-header-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Blog</span>
+                </h1>
+                <p class="hero-subtitle">Thoughts on cloud, code, and everything in between</p>
+            </div>
+        </section>
+
+        <!-- Blog Posts Section -->
+        <section class="blog-section">
+            <div class="blog-grid">
+
+                <article class="blog-card">
+                    <div class="blog-card-header">
+                        <span class="blog-date">January 19, 2026</span>
+                        <span class="blog-category">Cloud Computing</span>
+                    </div>
+                    <h2 class="blog-title">Building Scalable Applications with AWS Lambda</h2>
+                    <p class="blog-excerpt">
+                        Exploring serverless architecture patterns and how AWS Lambda can help you build cost-effective,
+                        scalable applications. Learn about cold starts, optimization techniques, and real-world use
+                        cases.
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">AWS</span>
+                        <span class="tag">Serverless</span>
+                        <span class="tag">Lambda</span>
+                    </div>
+                    <a href="blog-post.html" class="blog-read-more">
+                        Read more
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </a>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Designed & built by Ragul Arumugam</p>
+            <p>© <span id="year"></span> All rights reserved</p>
+        </div>
+    </footer>
+
+    <script src="/src/main.js"></script>
+</body>
+
+</html>

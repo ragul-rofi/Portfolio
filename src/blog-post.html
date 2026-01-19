@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Building Scalable Applications with AWS Lambda | Ragul Arumugam</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assests/fav.png">
+
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles.css">
+    <meta name="description"
+        content="Exploring serverless architecture patterns and how AWS Lambda can help you build cost-effective, scalable applications.">
+</head>
+
+<body>
+    <!-- Cinematic Ripple Overlay for Theme Transition -->
+    <div id="ripple-overlay" class="ripple-overlay"></div>
+
+    <!-- Logo -->
+    <div class="page-logo">
+        <img src="../assests/Logo-white.svg" alt="Ragul Arumugam Logo" class="logo-img logo-dark">
+        <img src="../assests/Logo-black.svg" alt="Ragul Arumugam Logo" class="logo-img logo-light">
+    </div>
+
+    <!-- Floating Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <!-- Hamburger Menu Button (Mobile Only) -->
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#contact">Contact</a>
+
+                <!-- Theme toggle inside menu on mobile -->
+                <button id="theme-toggle" class="theme-btn theme-btn-mobile" aria-label="Toggle theme">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                    <span class="theme-label">Toggle Theme</span>
+                </button>
+            </div>
+
+            <!-- Theme toggle for desktop -->
+            <button id="theme-toggle-desktop" class="theme-btn theme-btn-desktop" aria-label="Toggle theme">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Blog Post Article -->
+        <article class="blog-post">
+            <!-- Post Header -->
+            <header class="post-header">
+                <div class="post-meta">
+                    <span class="post-category">Cloud Computing</span>
+                    <span class="post-date">January 19, 2026</span>
+                    <span class="post-read-time">8 min read</span>
+                </div>
+                <h1 class="post-title">Building Scalable Applications with AWS Lambda</h1>
+                <p class="post-subtitle">Exploring serverless architecture patterns and how AWS Lambda can help you
+                    build cost-effective, scalable applications</p>
+
+                <!-- Author Info -->
+                <div class="post-author">
+                    <div class="author-avatar">
+                        <img src="../assests/me2.png" alt="Ragul Arumugam">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name">Ragul Arumugam</div>
+                        <div class="author-title">Cloud Engineer & Developer</div>
+                    </div>
+                </div>
+
+                <!-- Share Buttons -->
+                <div class="post-share">
+                    <span class="share-label">Share:</span>
+                    <button class="share-btn" data-platform="copy" aria-label="Copy link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Post Content -->
+            <div class="post-content">
+                <p class="lead-paragraph">
+                    Serverless computing has revolutionized how we build and deploy applications. AWS Lambda, at the
+                    forefront of this movement, allows developers to run code without provisioning or managing servers.
+                    But how do you leverage it effectively to build truly scalable applications?
+                </p>
+
+                <h2>Understanding Serverless Architecture</h2>
+                <p>
+                    Before diving into Lambda specifics, it's crucial to understand what serverless really means.
+                    Despite the name, servers are still involved—you just don't manage them. The cloud provider handles
+                    all the infrastructure, scaling, and maintenance, allowing you to focus purely on your code.
+                </p>
+
+                <p>
+                    This paradigm shift brings several advantages: automatic scaling, pay-per-use pricing, reduced
+                    operational overhead, and faster time to market. However, it also introduces new challenges that we
+                    need to address.
+                </p>
+
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=600&fit=crop"
+                        alt="Cloud computing visualization">
+                    <p class="image-caption">Serverless architecture enables automatic scaling and reduced operational
+                        overhead</p>
+                </div>
+
+                <h2>The Cold Start Problem</h2>
+                <p>
+                    One of the most discussed challenges with AWS Lambda is the "cold start" phenomenon. When a Lambda
+                    function hasn't been invoked for a while, AWS needs to provision a new execution environment, which
+                    adds latency to your first request.
+                </p>
+
+                <p>
+                    Here are some strategies to mitigate cold starts:
+                </p>
+
+                <ul>
+                    <li><strong>Provisioned Concurrency:</strong> Keep functions warm by maintaining a pool of
+                        pre-initialized execution environments</li>
+                    <li><strong>Optimize Package Size:</strong> Smaller deployment packages initialize faster</li>
+                    <li><strong>Use Appropriate Memory Settings:</strong> More memory means more CPU, leading to faster
+                        initialization</li>
+                    <li><strong>Minimize Dependencies:</strong> Only include what you actually need</li>
+                </ul>
+
+                <h2>Designing for Scalability</h2>
+                <p>
+                    Lambda automatically scales your application by running code in response to each trigger. However,
+                    designing for true scalability requires thoughtful architecture:
+                </p>
+
+                <h3>Event-Driven Architecture</h3>
+                <p>
+                    Lambda excels in event-driven scenarios. By decoupling your services and using events to communicate
+                    between them, you create a system that can scale independently at each layer.
+                </p>
+
+                <div class="code-block">
+                    <pre><code>// Example: Processing S3 uploads with Lambda
+exports.handler = async (event) => {
+    const bucket = event.Records[0].s3.bucket.name;
+    const key = event.Records[0].s3.object.key;
+    
+    console.log(`Processing file: ${key} from bucket: ${bucket}`);
+    
+    // Your processing logic here
+    const result = await processImage(bucket, key);
+    
+    return {
+        statusCode: 200,
+        body: JSON.stringify({ message: 'Processing complete', result })
+    };
+};</code></pre>
+                </div>
+
+                <h3>Asynchronous Processing</h3>
+                <p>
+                    For long-running tasks, use asynchronous invocation patterns. Lambda can process events from SQS
+                    queues, SNS topics, or EventBridge, allowing you to build resilient, scalable workflows.
+                </p>
+
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=600&fit=crop"
+                        alt="Code on screen">
+                    <p class="image-caption">Event-driven architecture enables independent scaling of services</p>
+                </div>
+
+                <h2>Cost Optimization Strategies</h2>
+                <p>
+                    While Lambda's pay-per-use model is attractive, costs can add up quickly without proper
+                    optimization:
+                </p>
+
+                <ol>
+                    <li><strong>Right-size your functions:</strong> Monitor execution time and memory usage to find the
+                        optimal configuration</li>
+                    <li><strong>Use ARM-based Graviton2 processors:</strong> They offer better price-performance than
+                        x86</li>
+                    <li><strong>Implement efficient error handling:</strong> Failed invocations still cost money</li>
+                    <li><strong>Leverage caching:</strong> Use Lambda layers for shared dependencies and external
+                        caching for data</li>
+                </ol>
+
+                <h2>Real-World Use Cases</h2>
+                <p>
+                    I've successfully implemented Lambda in various scenarios:
+                </p>
+
+                <ul>
+                    <li><strong>API Backends:</strong> Building RESTful APIs with API Gateway and Lambda</li>
+                    <li><strong>Data Processing:</strong> ETL pipelines that process millions of records daily</li>
+                    <li><strong>Image Processing:</strong> Automatic thumbnail generation and image optimization</li>
+                    <li><strong>Scheduled Tasks:</strong> Cron-like jobs for maintenance and reporting</li>
+                    <li><strong>Real-time Stream Processing:</strong> Processing Kinesis streams for analytics</li>
+                </ul>
+
+                <h2>Best Practices</h2>
+                <p>
+                    After working with Lambda extensively, here are my top recommendations:
+                </p>
+
+                <div class="highlight-box">
+                    <p><strong>Keep functions focused:</strong> Each Lambda should do one thing well. This makes them
+                        easier to test, maintain, and scale.</p>
+                    <p><strong>Use environment variables:</strong> Store configuration separately from code for better
+                        flexibility and security.</p>
+                    <p><strong>Implement proper logging:</strong> Use structured logging with CloudWatch Logs for better
+                        observability.</p>
+                    <p><strong>Set appropriate timeouts:</strong> Don't use the maximum timeout unless necessary—it can
+                        mask performance issues.</p>
+                </div>
+
+                <h2>Conclusion</h2>
+                <p>
+                    AWS Lambda is a powerful tool for building scalable applications, but it's not a silver bullet.
+                    Understanding its strengths and limitations is key to leveraging it effectively. By following the
+                    patterns and practices outlined here, you can build applications that scale seamlessly while keeping
+                    costs under control.
+                </p>
+
+                <p>
+                    The serverless journey is ongoing, with new features and capabilities being added regularly. Stay
+                    curious, experiment with different patterns, and always measure the impact of your architectural
+                    decisions.
+                </p>
+
+                <div class="post-tags">
+                    <span class="tag">AWS</span>
+                    <span class="tag">Serverless</span>
+                    <span class="tag">Lambda</span>
+                    <span class="tag">Cloud Architecture</span>
+                    <span class="tag">Scalability</span>
+                </div>
+            </div>
+
+            <!-- Post Footer -->
+            <footer class="post-footer">
+                <div class="post-footer-share">
+                    <h3>Share this article</h3>
+                    <div class="post-share">
+                        <button class="share-btn" data-platform="copy" aria-label="Copy link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="back-to-blog">
+                    <a href="blog.html" class="btn btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12" />
+                            <polyline points="12 19 5 12 12 5" />
+                        </svg>
+                        Back to Blog
+                    </a>
+                </div>
+            </footer>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Designed & built by Ragul Arumugam</p>
+            <p>© <span id="year"></span> All rights reserved</p>
+        </div>
+    </footer>
+
+    <script src="/src/main.js"></script>
+</body>
+
+</html>

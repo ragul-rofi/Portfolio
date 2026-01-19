@@ -16,326 +16,380 @@
 </head>
 
 <body>
-    <!-- Encrypted Text Loading Animation -->
-    <div id="loading-screen" class="loading-screen">
-        <canvas id="glitch-canvas" class="glitch-canvas"></canvas>
-        <div class="encrypted-text-container">
-            <h1 class="encrypted-text" id="encrypted-text"></h1>
-        </div>
+    <!-- Cinematic Ripple Overlay for Theme Transition -->
+    <div id="ripple-overlay" class="ripple-overlay"></div>
+
+    <!-- Custom SVG Splash Screen -->
+    <div id="splash" class="splash-screen">
+        <svg class="ragul-svg" viewBox="0 0 450 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- R -->
+            <path class="letter"
+                d="M 50 100 L 50 30 L 90 30 Q 105 30 105 45 Q 105 60 90 60 L 50 60 M 90 60 L 105 120" />
+
+            <!-- A -->
+            <path class="letter" d="M 135 120 L 160 30 L 185 120 M 145 85 L 175 85" />
+
+            <!-- G -->
+            <path class="letter" d="M 255 30 L 215 30 L 215 120 L 255 120 L 255 75 L 235 75" />
+
+            <!-- U -->
+            <path class="letter" d="M 285 30 L 285 100 Q 285 120 305 120 Q 325 120 325 100 L 325 50" />
+
+            <!-- L -->
+            <path class="letter" d="M 355 30 L 355 120 L 380 120" />
+        </svg>
     </div>
 
-    <!-- Logo -->
-    <div class="page-logo">
-        <img src="../assests/Logo-white.svg" alt="Ragul Arumugam Logo" class="logo-img logo-dark">
-        <img src="../assests/Logo-black.svg" alt="Ragul Arumugam Logo" class="logo-img logo-light">
-    </div>
-
-    <!-- Floating Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
-                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2">
-                    <circle cx="12" cy="12" r="5" />
-                    <line x1="12" y1="1" x2="12" y2="3" />
-                    <line x1="12" y1="21" x2="12" y2="23" />
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                    <line x1="1" y1="12" x2="3" y2="12" />
-                    <line x1="21" y1="12" x2="23" y2="12" />
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                </svg>
-                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                </svg>
-            </button>
+    <!-- Main Content Wrapper -->
+    <div id="main-content" class="main-content">
+        <!-- Logo -->
+        <div class="page-logo">
+            <img src="../assests/Logo-white.svg" alt="Ragul Arumugam Logo" class="logo-img logo-dark">
+            <img src="../assests/Logo-black.svg" alt="Ragul Arumugam Logo" class="logo-img logo-light">
         </div>
-    </nav>
 
-    <main class="main">
-        <!-- Hero Section -->
-        <section id="about" class="hero">
-            <div class="hero-content">
+        <!-- Floating Navigation -->
+        <nav class="nav">
+            <div class="nav-container">
+                <!-- Hamburger Menu Button (Mobile Only) -->
+                <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
 
-                <h1 class="hero-title">
-                    Hi, I'm <span class="gradient-text">Ragul</span> <span class="cursive-text">Arumugam</span>
-                </h1>
-                <p class="hero-subtitle">Cloud & Software Engineer</p>
-                <p class="hero-description">
-                    I build cloud-first software and explore immersive UIs. Currently focused on distributed systems,
-                    DevOps, and reliable web applications. Open to internships and collaborations.
-                </p>
-                <div class="hero-links">
-                    <a href="mailto:ragul.apoffl@gmail.com" class="btn btn-primary">Get in touch</a>
-                    <a href="https://github.com/ragul-rofi" target="_blank" rel="noopener" class="btn btn-secondary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="#contact">Contact</a>
+
+                    <!-- Theme toggle inside menu on mobile -->
+                    <button id="theme-toggle" class="theme-btn theme-btn-mobile" aria-label="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                         </svg>
-                        GitHub
-                    </a>
-                    <a href="https://linkedin.com/in/ragul-arumugam-dev" target="_blank" rel="noopener"
-                        class="btn btn-secondary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                         </svg>
-                        LinkedIn
-                    </a>
+                        <span class="theme-label">Toggle Theme</span>
+                    </button>
                 </div>
-            </div>
-            <div class="hero-image">
-                <div class="tilted-card-wrapper">
-                    <div class="tilted-card">
-                        <img src="../assests/me2.png" alt="Ragul Arumugam" class="avatar-img">
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Skills Section -->
-        <section class="skills-section">
-            <div class="section-header">
-                <h2 class="section-title">Skills & Expertise</h2>
-                <p class="section-subtitle">Technologies I work with</p>
+                <!-- Theme toggle for desktop -->
+                <button id="theme-toggle-desktop" class="theme-btn theme-btn-desktop" aria-label="Toggle theme">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
             </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Cloud & DevOps</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Linux</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Frameworks & Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Figma</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Specializations</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">A-Frame VR</span>
-                        <span class="skill-tag">Web Development</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </nav>
 
-        <!-- Projects Section -->
-        <section id="projects" class="projects-section">
-            <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Some things I've built</p>
-            </div>
-            <div class="projects-grid">
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                                <line x1="8" y1="21" x2="16" y2="21" />
-                                <line x1="12" y1="17" x2="12" y2="21" />
+        <main class="main">
+            <!-- Hero Section -->
+            <section id="about" class="hero">
+                <div class="hero-content">
+
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="gradient-text">Ragul</span> <span class="cursive-text">Arumugam</span>
+                    </h1>
+                    <p class="hero-subtitle">Cloud First Software Engineer</p>
+                    <p class="hero-description">
+                        I build cloud-first software and explore immersive UIs. Currently focused on distributed
+                        systems,
+                        DevOps, and reliable web applications. Open to internships and collaborations.
+                    </p>
+                    <div class="hero-links">
+                        <a href="mailto:ragul.apoffl@gmail.com" class="btn btn-primary">Get in touch</a>
+                        <a href="https://github.com/ragul-rofi" target="_blank" rel="noopener"
+                            class="btn btn-secondary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                             </svg>
-                        </div>
-                        <span class="project-date">Aug 2025</span>
-                    </div>
-                    <h3 class="project-title">VRAQ — PCB Defect Detection</h3>
-                    <p class="project-description">
-                        Computer vision system for advanced PCB quality assurance with VR visualization.
-                        Built web-based analytical tools and immersive VR environments for Meta Quest 3.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Computer Vision</span>
-                        <span class="tag">VR</span>
-                        <span class="tag">A-Frame</span>
-                    </div>
-                    <a href="#" class="project-link">
-                        View demo
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                            <polyline points="12 5 19 12 12 19" />
-                        </svg>
-                    </a>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
-                                <polyline points="13 2 13 9 20 9" />
+                            GitHub
+                        </a>
+                        <a href="https://linkedin.com/in/ragul-arumugam-dev" target="_blank" rel="noopener"
+                            class="btn btn-secondary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                             </svg>
-                        </div>
-                        <span class="project-date">May 2025</span>
-                    </div>
-                    <h3 class="project-title">AutoVault — Storage & Versioning</h3>
-                    <p class="project-description">
-                        Cloud-focused platform for CNC/PLC program storage and versioning.
-                        Flask backend with PostgreSQL for structured data persistence and backup system.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Flask</span>
-                        <span class="tag">PostgreSQL</span>
-                        <span class="tag">Cloud</span>
-                    </div>
-                    <a href="#" class="project-link">
-                        View code
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                            <polyline points="12 5 19 12 12 19" />
-                        </svg>
-                    </a>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="4 17 10 11 4 5" />
-                                <line x1="12" y1="19" x2="20" y2="19" />
-                            </svg>
-                        </div>
-                        <span class="project-date">Nov 2024</span>
-                    </div>
-                    <h3 class="project-title">Ragul CMD — Terminal Replica</h3>
-                    <p class="project-description">
-                        GUI-based command-line interface replicating core Linux shell functions.
-                        Implemented commands like ls, cd, pwd, touch with directory navigation.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">Swing</span>
-                        <span class="tag">CLI</span>
-                    </div>
-                    <a href="#" class="project-link">
-                        View code
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                            <polyline points="12 5 19 12 12 19" />
-                        </svg>
-                    </a>
-                </article>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section class="experience-section">
-            <div class="experience-grid">
-                <div class="experience-card">
-                    <div class="experience-icon">🏆</div>
-                    <h3 class="experience-title">Hackathon Finalist</h3>
-                    <p class="experience-org">ABB Hackathon @KPR Institue</p>
-                    <p class="experience-date">August 2025</p>
-                    <p class="experience-description">
-                        Led a four-member team to top-30 among 300+ participants for industrial innovation.
-                    </p>
-                </div>
-                <div class="experience-card">
-                    <div class="experience-icon">🎓</div>
-                    <h3 class="experience-title">B.E CSE</h3>
-                    <p class="experience-org">Rathinam Technical Campus</p>
-                    <p class="experience-date">Sep 2023 — May 2027</p>
-                    <p class="experience-description">
-                        Computer Science & Engineering, Coimbatore, India
-                    </p>
-                </div>
-                <div class="experience-card">
-                    <div class="experience-icon">📜</div>
-                    <h3 class="experience-title">Certifications</h3>
-                    <ul class="experience-list">
-                        <li>UI/UX Design</li>
-                        <li>Ethical Hacking Fundamentals</li>
-                        <li>Introduction to Prompt Engineering</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2 class="contact-title">Let's work together</h2>
-                    <p class="contact-description">
-                        I'm currently looking for internship opportunities and open to collaborations.
-                        Whether you have a project in mind or just want to chat, feel free to reach out.
-                    </p>
-                    <div class="contact-details">
-                        <a href="mailto:ragul.apoffl@gmail.com" class="contact-detail">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                <polyline points="22,6 12,13 2,6" />
-                            </svg>
-                            ragul.apoffl@gmail.com
+                            LinkedIn
                         </a>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form" action="https://formspree.io/f/xyzaavpo" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                <div class="hero-image">
+                    <div class="tilted-card-wrapper">
+                        <div class="tilted-card">
+                            <img src="../assests/me2.png" alt="Ragul Arumugam" class="avatar-img">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="_replyto" placeholder="your@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Your message..."
-                            required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">Send message</button>
+                </div>
+            </section>
 
-                </form>
+            <!-- Skills Section -->
+            <section class="skills-section">
+                <div class="section-header">
+                    <h2 class="section-title">Skills & Expertise</h2>
+                    <p class="section-subtitle">Technologies I work with</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Cloud & DevOps</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Linux</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Frameworks & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Figma</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Specializations</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">A-Frame VR</span>
+                            <span class="skill-tag">Web Development</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="projects-section">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Some things I've built</p>
+                </div>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                    <line x1="8" y1="21" x2="16" y2="21" />
+                                    <line x1="12" y1="17" x2="12" y2="21" />
+                                </svg>
+                            </div>
+                            <span class="project-date">Aug 2025</span>
+                        </div>
+                        <h3 class="project-title">VRAQ — PCB Defect Detection</h3>
+                        <p class="project-description">
+                            Computer vision system for advanced PCB quality assurance with VR visualization.
+                            Built web-based analytical tools and immersive VR environments for Meta Quest 3.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">VR</span>
+                            <span class="tag">A-Frame</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            View demo
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                            </svg>
+                        </a>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                                    <polyline points="13 2 13 9 20 9" />
+                                </svg>
+                            </div>
+                            <span class="project-date">May 2025</span>
+                        </div>
+                        <h3 class="project-title">AutoVault — Storage & Versioning</h3>
+                        <p class="project-description">
+                            Cloud-focused platform for CNC/PLC program storage and versioning.
+                            Flask backend with PostgreSQL for structured data persistence and backup system.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Flask</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">Cloud</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            View code
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                            </svg>
+                        </a>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="4 17 10 11 4 5" />
+                                    <line x1="12" y1="19" x2="20" y2="19" />
+                                </svg>
+                            </div>
+                            <span class="project-date">Nov 2024</span>
+                        </div>
+                        <h3 class="project-title">Ragul CMD — Terminal Replica</h3>
+                        <p class="project-description">
+                            GUI-based command-line interface replicating core Linux shell functions.
+                            Implemented commands like ls, cd, pwd, touch with directory navigation.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">Swing</span>
+                            <span class="tag">CLI</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            View code
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                            </svg>
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="experience-section">
+                <div class="experience-grid">
+                    <div class="experience-card">
+                        <div class="experience-icon">🏆</div>
+                        <h3 class="experience-title">Hackathon Finalist</h3>
+                        <p class="experience-org">ABB Hackathon @KPR Institue</p>
+                        <p class="experience-date">August 2025</p>
+                        <p class="experience-description">
+                            Led a four-member team to top-30 among 300+ participants for industrial innovation.
+                        </p>
+                    </div>
+                    <div class="experience-card">
+                        <div class="experience-icon">🎓</div>
+                        <h3 class="experience-title">B.E CSE</h3>
+                        <p class="experience-org">Rathinam Technical Campus</p>
+                        <p class="experience-date">Sep 2023 — May 2027</p>
+                        <p class="experience-description">
+                            Computer Science & Engineering, Coimbatore, India
+                        </p>
+                    </div>
+                    <div class="experience-card">
+                        <div class="experience-icon">📜</div>
+                        <h3 class="experience-title">Certifications</h3>
+                        <ul class="experience-list">
+                            <li>AWS Academy Graduate - Cloud Fundamentals</li>
+                            <li>UI/UX Design</li>
+                            <li>Ethical Hacking Fundamentals</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2 class="contact-title">Let's work together</h2>
+                        <p class="contact-description">
+                            I'm currently looking for internship opportunities and open to collaborations.
+                            Whether you have a project in mind or just want to chat, feel free to reach out.
+                        </p>
+                        <div class="contact-details">
+                            <a href="mailto:ragul.apoffl@gmail.com" class="contact-detail">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                                ragul.apoffl@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contact-form" action="https://formspree.io/f/xyzaavpo" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="_replyto" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Your message..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send message</button>
+
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>Designed & built by Ragul Arumugam</p>
+                <p>© <span id="year"></span> All rights reserved</p>
             </div>
-        </section>
-    </main>
+        </footer>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>Designed & built by Ragul Arumugam</p>
-            <p>© <span id="year"></span> All rights reserved</p>
+        <!-- Success Notification -->
+        <div id="form-notification" class="form-notification">
+            <div class="notification-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <div class="notification-message">Message sent successfully!</div>
         </div>
-    </footer>
-
-    <!-- Success Notification -->
-    <div id="form-notification" class="form-notification">
-        <div class="notification-icon">
-            <svg viewBox="0 0 24 24" fill="none">
-                <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-        </div>
-        <div class="notification-message">Message sent successfully!</div>
     </div>
+    <!-- End Main Content Wrapper -->
 
     <script src="/src/main.js"></script>
 </body>
