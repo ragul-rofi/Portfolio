@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+dist/
+.kiro/
+__tests__
+guidelines/
+ATTRIBUTIONS.md
+
+

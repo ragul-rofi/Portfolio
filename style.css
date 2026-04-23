@@ -1,0 +1,843 @@
+/* ============================================================
+   Design Tokens
+   ============================================================ */
+:root {
+  --bg-base: #080808;
+  --bg-surface: #111111;
+  --bg-elevated: #1a1a1a;
+  --accent: #C8F135;
+  --accent-dim: #a8cc20;
+  --text-primary: #f0f0f0;
+  --text-secondary: #888888;
+  --text-muted: #444444;
+  --border: #222222;
+
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+
+  /* Type scale */
+  --fs-hero: clamp(2.8rem, 6vw, 5rem);
+  --fs-section: clamp(1.6rem, 3vw, 2.4rem);
+  --fs-body: 1rem;
+  --lh-body: 1.7;
+  --fs-label: 0.75rem;
+}
+
+/* ============================================================
+   Loading Screen
+   ============================================================ */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: opacity 0.5s ease;
+}
+
+#loader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#loader-svg {
+  width: 320px;
+  height: 320px;
+}
+
+#loader-svg line {
+  stroke: var(--accent);
+  stroke-width: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#loader-svg circle {
+  fill: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s ease, r 0.3s ease;
+}
+
+#loader-counter {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-top: 2rem;
+}
+
+#loader-counter::before {
+  content: 'LOADING [';
+  color: var(--accent);
+}
+
+/* ============================================================
+   Reset & Base
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+#nav.nav--scrolled {
+  background: rgba(8, 8, 8, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.nav-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.nav-logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.nav-link--active {
+  color: var(--accent);
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* ============================================================
+   Nav Overlay (mobile)
+   ============================================================ */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.nav-overlay.nav-overlay--open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.nav-overlay ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+}
+
+.nav-overlay a {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+
+.nav-overlay a:hover {
+  color: var(--accent);
+}
+
+/* ============================================================
+   Hero Section
+   ============================================================ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem 2rem 4rem;
+  overflow: hidden;
+}
+
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.hero-label {
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.hero-headline {
+  font-size: var(--fs-hero);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-primary);
+  max-width: 18ch;
+  margin-bottom: 1.5rem;
+}
+
+.hero-typewriter {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  min-height: 2rem;
+}
+
+.typewriter-cursor {
+  color: var(--accent);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  min-height: 44px;
+  min-width: 44px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--bg-base);
+  border-color: var(--accent);
+}
+
+.btn--primary:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent-dim);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+.btn--ghost:hover {
+  border-color: var(--text-secondary);
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ============================================================
+   Section Base
+   ============================================================ */
+section {
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  font-size: var(--fs-section);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3rem;
+}
+
+/* ============================================================
+   Systems Built — Accordion
+   ============================================================ */
+.accordion-item {
+  border-top: 1px solid var(--border);
+}
+
+.accordion-item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  text-align: left;
+  min-height: 44px;
+  transition: color 0.2s ease;
+}
+
+.accordion-trigger:hover {
+  color: var(--accent);
+}
+
+.accordion-index {
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  min-width: 2ch;
+}
+
+.accordion-title {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.accordion-arrow {
+  color: var(--text-muted);
+  transition: transform 0.35s ease;
+  font-size: 1rem;
+}
+
+.accordion-trigger[aria-expanded="true"] .accordion-arrow {
+  transform: rotate(180deg);
+}
+
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.accordion-panel-inner {
+  padding: 0 0 2rem 3.5rem;
+}
+
+.accordion-problem {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.accordion-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.accordion-bullets li {
+  color: var(--text-secondary);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.accordion-bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.accordion-link {
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+
+.accordion-link:hover {
+  color: var(--accent-dim);
+}
+
+/* ============================================================
+   How I Think
+   ============================================================ */
+.thinking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.thinking-bio p {
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.stack-tag {
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 0.25rem 0.6rem;
+}
+
+.thinking-principles ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.thinking-principles li {
+  color: var(--text-secondary);
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.thinking-principles li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+/* ============================================================
+   Live Proof
+   ============================================================ */
+.credential-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.credential-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.credential-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.credential-issuer {
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.credential-verify {
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  white-space: nowrap;
+  transition: color 0.2s ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.credential-verify:hover {
+  color: var(--accent-dim);
+}
+
+.proof-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.proof-links a {
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.proof-links a:hover {
+  color: var(--accent);
+}
+
+/* ============================================================
+   Talk / Contact
+   ============================================================ */
+.talk-layout {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+#talk .section-heading {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.talk-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.4;
+}
+
+.talk-content > *:last-child {
+  margin-bottom: 0;
+}
+
+.talk-email {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+#email-address {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.copy-btn {
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bg-base);
+  background: var(--accent);
+  border: none;
+  border-radius: 2px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  transition: background 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: var(--accent-dim);
+}
+
+.talk-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.talk-links a {
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  line-height: 1.2;
+}
+
+.talk-links a:hover {
+  color: var(--accent);
+}
+
+.talk-photo {
+  flex-shrink: 0;
+  width: 250px;
+}
+
+.talk-photo img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  display: block;
+  filter: grayscale(20%);
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   Scroll Reveal
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   Custom Cursor
+   ============================================================ */
+@media (pointer: fine) {
+  html, body, a, button, [role="button"], input, textarea, select, label {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M8 2v13l3-3 2 5 2-1-2-5h4z' fill='%23C8F135' stroke='%23080808' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 0 0, pointer;
+  }
+}
+
+
+
+
+/* ============================================================
+   Responsive — 768px
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Nav: hide links, show hamburger */
+  .nav-links {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  /* How I Think: collapse to single column */
+  .thinking-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  /* Section spacing */
+  section {
+    padding: 4rem 1.25rem;
+  }
+
+  #hero {
+    padding: 7rem 1.25rem 3rem;
+  }
+
+  /* Restore default cursor on mobile */
+  html, body, a, button, [role="button"], input, textarea, select, label {
+    cursor: auto;
+  }
+
+  /* Prevent accordion inner padding from causing overflow */
+  .accordion-panel-inner {
+    padding-left: 1.5rem;
+  }
+
+  /* Ensure talk/proof links wrap properly */
+  .talk-links,
+  .proof-links {
+    flex-wrap: wrap;
+  }
+
+  .talk-layout {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .talk-photo {
+    width: 140px;
+    align-self: center;
+  }
+}
+
+/* ============================================================
+   Responsive — 480px
+   ============================================================ */
+@media (max-width: 480px) {
+  /* Tighter section spacing */
+  section {
+    padding: 3rem 1rem;
+  }
+
+  #hero {
+    padding: 6rem 1rem 2.5rem;
+  }
+
+  /* Smaller font sizes for small screens */
+  :root {
+    --fs-hero: clamp(2rem, 8vw, 2.8rem);
+    --fs-section: clamp(1.4rem, 5vw, 1.8rem);
+  }
+
+  .hero-typewriter {
+    font-size: 1rem;
+  }
+
+  /* Stack CTAs vertically */
+  .hero-ctas {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Stack credential items vertically */
+  .credential-item {
+    flex-direction: column;
+  }
+
+  /* Tighter proof links gap */
+  .proof-links {
+    gap: 1rem;
+  }
+
+  /* Reduce accordion inner indent further */
+  .accordion-panel-inner {
+    padding-left: 1rem;
+  }
+
+  /* Nav padding tighter */
+  #nav {
+    padding: 1rem 1rem;
+  }
+
+  /* Stack tags wrap tightly */
+  .stack-tags {
+    gap: 0.375rem;
+  }
+}

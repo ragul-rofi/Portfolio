@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ragul Arumugam — building production-grade systems." />
+  <title>Ragul Arumugam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon/favicon.ico" />
+</head>
+
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loader">
+    <svg id="loader-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div id="loader-counter"><span id="loader-pct">0</span>%]</div>
+  </div>
+
+  <nav id="nav">
+    <a class="nav-logo" href="#hero"><img src="/assests/Logo-white.svg" alt="RA Logo"></a>
+    <ul class="nav-links">
+      <li><a href="#systems">Systems Built</a></li>
+      <li><a href="#thinking">How I Think</a></li>
+      <li><a href="#proof">Live Proof</a></li>
+      <li><a href="#talk">Let's Talk</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div id="nav-overlay" class="nav-overlay" aria-hidden="true">
+    <ul>
+      <li><a href="#systems">Systems Built</a></li>
+      <li><a href="#thinking">How I Think</a></li>
+      <li><a href="#proof">Live Proof</a></li>
+      <li><a href="#talk">Let's Talk</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <section id="hero">
+      <p class="hero-label" data-reveal>Currently: Building in Production</p>
+      <h1 class="hero-headline" data-reveal>I don't build demos.<br>I build things that run.</h1>
+      <p class="hero-typewriter" data-reveal>
+        <span id="typewriter-text"></span><span class="typewriter-cursor" aria-hidden="true">|</span>
+      </p>
+      <div class="hero-ctas" data-reveal>
+        <a href="#systems" class="btn btn--primary">See the work</a>
+        <a href="mailto:ragul.apoffl@gmail.com" class="btn btn--ghost">Get in touch</a>
+      </div>
+      <div class="hero-scroll-indicator" aria-hidden="true">↓</div>
+    </section>
+
+    <section id="systems">
+      <h2 class="section-heading" data-reveal>Systems Built</h2>
+      <div id="accordion-container" data-reveal></div>
+    </section>
+
+    <section id="thinking">
+      <h2 class="section-heading" data-reveal>How I Think</h2>
+      <div class="thinking-grid">
+        <div class="thinking-bio" data-reveal>
+          <p>I build systems that solve real problems. Not demos, not
+            tutorials, not clones.</p>
+          <p>My work spans Python middleware, voice AI pipelines, and white-labeled SaaS. I care about decisions,
+            tradeoffs, and outcomes — not just code.</p>
+          <div class="stack-tags" aria-label="Technology stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">AWS</span>
+            <span class="stack-tag">Node.js</span>
+            <span class="stack-tag">PostgreSQL</span>
+            <span class="stack-tag">Docker</span>
+            <span class="stack-tag">Figma</span>
+            <span class="stack-tag">FastAPI</span>
+            <span class="stack-tag">React</span>
+            <span class="stack-tag">TypeScript</span>
+          </div>
+        </div>
+        <div class="thinking-principles" data-reveal>
+          <ul>
+            <li>Ship to production, not to portfolio.</li>
+            <li>Constraints produce better decisions than freedom.</li>
+            <li>Measure outcomes, not effort.</li>
+            <li>Read the error message before asking for help.</li>
+            <li>Build the boring version first.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof">
+      <h2 class="section-heading" data-reveal>Live Proof</h2>
+      <div id="credentials-container" data-reveal></div>
+      <div class="proof-links" data-reveal>
+        <a href="https://pypi.org/user/ragularumugam/" target="_blank" rel="noopener">PyPI ↗</a>
+        <a href="https://github.com/ragul-rofi" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/ragul-arumugam-dev/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+
+    <section id="talk">
+      <h2 class="section-heading" data-reveal>Let's Talk</h2>
+      <div class="talk-layout">
+        <div class="talk-content" data-reveal>
+          <div class="talk-email">
+            <span id="email-address">ragul.apoffl@gmail.com</span>
+            <button id="copy-btn" class="copy-btn" aria-label="Copy email address">Copy</button>
+          </div>
+          <div class="talk-links">
+            <a href="https://www.linkedin.com/in/ragul-arumugam-dev/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="https://github.com/ragul-rofi" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="https://pypi.org/user/ragularumugam/" target="_blank" rel="noopener">PyPI ↗</a>
+            <a href="https://medium.com/@ragularumugam" target="_blank" rel="noopener">Medium ↗</a>
+            <a href="https://x.com/ragul_dev" target="_blank" rel="noopener">X ↗</a>
+          </div>
+        </div>
+        <div class="talk-photo" data-reveal>
+          <img src="/assests/me2.png" alt="Ragul Arumugam">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Ever building | Ragul Arumugam</p>
+  </footer>
+
+  <script defer src="script.js"></script>
+</body>
+
+</html>
