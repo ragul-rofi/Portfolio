@@ -146,56 +146,61 @@ const PROJECTS = [
   {
     index: '01',
     title: 'CLM Plugin',
-    problem: 'Contract lifecycle management tools were locked inside expensive enterprise suites. Teams needed a lightweight, embeddable plugin that could parse, version, and flag contract clauses without a six-figure SaaS subscription.',
-    bullets: [
-      'Decision: Build as a standalone Python package with a clean API so it could drop into any existing workflow without forcing a platform migration.',
-      'Tech: Python, spaCy NLP pipeline, PostgreSQL for clause versioning, packaged and published to PyPI.',
-      'Outcome: Published open-source on PyPI; adopted by early users within the first month of release.',
-    ],
+    problem: 'LLM agents run blindly — no way to monitor cognitive state inside an agent loop without rebuilding the framework.',
+    decision: 'Drop-in Python middleware tracking four signals — branching factor, repetition rate, uncertainty density, goal distance — without requiring framework changes.',
+    tech: 'Python · LangChain · OpenAI SDK · Sentence Transformers · SQLite · PyPI',
+    outcome: 'Published on PyPI. 79 automated tests. Engaged by a Salesforce principal engineer within weeks of release.',
+    role: null,
     link: 'https://pypi.org/project/clm-plugin/',
   },
   {
     index: '02',
-    title: 'Voz Voice Agent',
-    problem: 'Existing voice AI demos had 1–2 second latency that made real conversations feel broken. The goal was a production-grade voice pipeline that felt instantaneous — under 600ms end-to-end.',
-    bullets: [
-      'Decision: Architect around streaming STT and TTS with a stateless FastAPI middleware layer to eliminate buffering bottlenecks.',
-      'Tech: Python, FastAPI, WebSockets, Deepgram STT, ElevenLabs TTS, deployed on AWS EC2 behind a load balancer.',
-      'Outcome: Achieved sub-600ms round-trip latency in production; white-labeled for a client\'s customer support workflow.',
-    ],
-    link: null,
+    title: 'Forge / SRINI',
+    problem: 'Career assessments are static and ignored. Students needed a real conversation, not a form.',
+    decision: 'Voice-first career profiling platform with a multilingual AI agent under 800ms latency end to end.',
+    tech: 'VAPI · Deepgram Nova-2 · Claude Haiku · ElevenLabs Turbo · Node.js · PostgreSQL · admin + client dashboards',
+    outcome: 'Sub-800ms end-to-end in production. Full SaaS architecture with white-label potential.',
+    role: null,
+    link: 'https://www.tryforge.site/',
   },
   {
     index: '03',
-    title: 'Forge / SRINI',
-    problem: 'Internal tooling at small teams is either non-existent or held together with spreadsheets. SRINI is an AI-assisted operations layer — a system that routes tasks, surfaces context, and reduces the cognitive overhead of running a small engineering team.',
-    bullets: [
-      'Decision: Design as a modular agent framework so individual capabilities (task routing, context retrieval, alerting) could be swapped without rebuilding the core.',
-      'Tech: Python, LangChain agent orchestration, PostgreSQL, REST API, React dashboard for operator visibility.',
-      'Outcome: Running internally; reduced context-switching overhead for a two-person team managing three concurrent projects.',
-    ],
-    link: 'https://www.tryforge.site/',
+    title: 'LMS Voice Agent',
+    problem: "An internal MOOC platform needed a voice layer — but the architecture underneath wasn't built to scale or be reused.",
+    decision: 'Redesigned into a white-labeled modular SaaS any institution can deploy under their own brand.',
+    tech: 'Voice AI pipeline · Node.js · PostgreSQL · modular SaaS architecture',
+    outcome: 'Active build. Platform architecture complete, voice layer in development.',
+    role: null,
+    link: null,
   },
   {
     index: '04',
     title: 'Aglen',
-    problem: 'Freelancers and micro-agencies needed a white-labeled client portal — a place to share deliverables, collect feedback, and manage project milestones — without paying for Notion or ClickUp seats for every client.',
-    bullets: [
-      'Decision: Build a multi-tenant SaaS with subdomain-based white-labeling so each agency could brand the portal as their own product.',
-      'Tech: Node.js, PostgreSQL, AWS S3 for file storage, Stripe for billing, deployed on AWS with subdomain routing via Route 53.',
-      'Outcome: Deployed and in active use; handles file delivery, milestone tracking, and client sign-off in a single interface.',
-    ],
+    problem: 'Field workers need plant disease diagnosis offline, fast, and explainable. Most tools require connectivity and give no reasoning.',
+    decision: 'Custom CNN + Grad-CAM XAI for explainability, PWA for offline-first field use.',
+    tech: 'Python · OpenCV · CNN · Grad-CAM · Flask · PWA · admin dashboard',
+    outcome: 'Active build. Full-stack ownership — model, API, frontend, admin panel.',
+    role: null,
     link: null,
   },
   {
     index: '05',
+    title: 'RaiseCRM',
+    problem: 'Placement teams managed company pipelines across spreadsheets — no single view, no access control.',
+    decision: 'Internal CRM for placement ops — company pipeline, drive tracking, hierarchical role-based dashboards.',
+    tech: 'Next.js · PostgreSQL',
+    outcome: 'Internally deployed and in active use by the placement team.',
+    role: 'Initial planning, frontend, and testing.',
+    link: null,
+  },
+  {
+    index: '06',
     title: 'RaiseHub',
-    problem: 'Early-stage founders in Tier-2 cities had no structured way to find and approach angel investors. Cold emails went nowhere; warm introductions required networks most founders didn\'t have.',
-    bullets: [
-      'Decision: Build a curated matching layer — not another directory — that surfaces relevant investors based on sector, stage, and geography, then facilitates a warm intro workflow.',
-      'Tech: Python backend, PostgreSQL, React frontend, email automation via AWS SES, deployed on AWS.',
-      'Outcome: Prototype validated with 12 founders; investor matching accuracy rated above cold outreach by all test users.',
-    ],
+    problem: 'Student data — assessments, resumes, certifications, placement outcomes, alumni — lived in silos with no unified access.',
+    decision: 'Single end-to-end platform for the full student lifecycle with hierarchical access control per authority level.',
+    tech: 'Full-stack web app · PostgreSQL · role-based access architecture',
+    outcome: 'Development complete. Active testing phase.',
+    role: 'Involved from initial planning stage.',
     link: null,
   },
 ];
@@ -324,24 +329,22 @@ function renderProjects() {
     const linkHtml = proj.link
       ? `<a href="${proj.link}" class="accordion-link" target="_blank" rel="noopener">View live ↗</a>`
       : '';
-    const bulletsHtml = proj.bullets
-      .map(b => `<li>${b}</li>`)
-      .join('\n        ');
+    const roleHtml = proj.role
+      ? `<div class="panel-row"><span class="panel-label">Role:</span> <span class="panel-value">${proj.role}</span></div>`
+      : '';
 
-    return `<article class="accordion-item" data-index="${proj.index}">
-  <button class="accordion-trigger" aria-expanded="false" aria-controls="${panelId}">
-    <span class="accordion-index">${proj.index}</span>
-    <span class="accordion-title">${proj.title}</span>
-    <span class="accordion-arrow">↓</span>
+    return `<article class="accordion-panel-item" data-index="${proj.index}">
+  <button class="panel-trigger" aria-expanded="${i === 0 ? 'true' : 'false'}" aria-controls="${panelId}">
+    <span class="panel-title-rotated">${proj.title}</span>
   </button>
-  <div class="accordion-panel" id="${panelId}" role="region">
-    <div class="accordion-panel-inner">
-      <p class="accordion-problem">${proj.problem}</p>
-      <ul class="accordion-bullets">
-        ${bulletsHtml}
-      </ul>
-      ${linkHtml}
-    </div>
+  <div class="panel-content" id="${panelId}" role="region">
+    <h3 class="panel-heading">${proj.title}</h3>
+    <p class="panel-problem">${proj.problem}</p>
+    <div class="panel-row"><span class="panel-label">Decision:</span> <span class="panel-value">${proj.decision}</span></div>
+    <div class="panel-row"><span class="panel-label">Tech:</span> <span class="panel-value">${proj.tech}</span></div>
+    <div class="panel-row"><span class="panel-label">Outcome:</span> <span class="panel-value">${proj.outcome}</span></div>
+    ${roleHtml}
+    ${linkHtml}
   </div>
 </article>`;
   }).join('\n');
@@ -371,30 +374,43 @@ function renderCredentials() {
 function initAccordion() {
   renderProjects();
 
-  const triggers = document.querySelectorAll('.accordion-trigger');
+  // Wait for DOM to update after render
+  setTimeout(() => {
+    const triggers = document.querySelectorAll('.panel-trigger');
 
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const panelId = trigger.getAttribute('aria-controls');
-      const panel = document.getElementById(panelId);
-      if (!panel) return;
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener('click', () => {
+        // Close all panels
+        triggers.forEach(t => {
+          t.setAttribute('aria-expanded', 'false');
+          t.parentElement.classList.remove('active');
+        });
 
-      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-
-      // Close all
-      triggers.forEach(t => {
-        t.setAttribute('aria-expanded', 'false');
-        const p = document.getElementById(t.getAttribute('aria-controls'));
-        if (p) p.style.maxHeight = '0';
+        // Open clicked panel
+        trigger.setAttribute('aria-expanded', 'true');
+        trigger.parentElement.classList.add('active');
       });
 
-      // If it wasn't open, open it
-      if (!isOpen) {
-        trigger.setAttribute('aria-expanded', 'true');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-      }
+      // Keyboard navigation
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const nextIndex = (index + 1) % triggers.length;
+          triggers[nextIndex].focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prevIndex = (index - 1 + triggers.length) % triggers.length;
+          triggers[prevIndex].focus();
+        }
+      });
     });
-  });
+
+    // Activate first panel by default
+    if (triggers.length > 0) {
+      triggers[0].parentElement.classList.add('active');
+      triggers[0].setAttribute('aria-expanded', 'true');
+    }
+  }, 0);
 }
 
 /**
