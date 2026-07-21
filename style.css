@@ -2,11 +2,11 @@
    Design Tokens
    ============================================================ */
 :root {
-  --bg-base: #080808;
+ --bg-base: #080808;
   --bg-surface: #111111;
   --bg-elevated: #1a1a1a;
-  --accent: #C8F135;
-  --accent-dim: #a8cc20;
+  --accent: #BC9EFF;
+  --accent-dim: #8B5CF6;
   --text-primary: #f0f0f0;
   --text-secondary: #888888;
   --text-muted: #444444;
@@ -296,7 +296,7 @@ ul {
   font-family: var(--font-sans);
   font-size: 0.9rem;
   font-weight: 600;
-  border-radius: 4px;
+  border-radius: 0px;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   min-height: 44px;
   min-width: 44px;
@@ -409,7 +409,7 @@ section {
 
   @media (hover: hover) and (pointer: fine) {
     .panel-trigger:hover {
-      background: rgba(200, 241, 53, 0.05);
+      background: rgba(139, 93, 247, 0.05);
     }
   }
 
@@ -636,7 +636,7 @@ section {
   color: var(--text-secondary);
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  border-radius: 2px;
+  border-radius: 0px;
   padding: 0.25rem 0.6rem;
 }
 
@@ -677,7 +677,7 @@ section {
   padding: 1.25rem;
   background: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 0px;
 }
 
 .credential-name {
@@ -782,7 +782,7 @@ section {
   color: var(--bg-base);
   background: var(--accent);
   border: none;
-  border-radius: 2px;
+  border-radius: 0px;
   padding: 0.4rem 0.9rem;
   cursor: pointer;
   min-height: 44px;
@@ -829,10 +829,10 @@ section {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: top;
-  border-radius: 12px;
-  border: 2px solid var(--border);
+  border-radius: 1px;
   display: block;
   filter: grayscale(20%);
+  box-shadow: 12px 12px 0 #8B5CF6;
 }
 
 /* ============================================================
@@ -868,7 +868,7 @@ footer {
    ============================================================ */
 @media (pointer: fine) {
   html, body, a, button, [role="button"], input, textarea, select, label {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M8 2v13l3-3 2 5 2-1-2-5h4z' fill='%23C8F135' stroke='%23080808' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 0 0, pointer;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M8 2v13l3-3 2 5 2-1-2-5h4z' fill='%238B5CF6' stroke='%238B5CF6' stroke-width='0.5' stroke-linejoin='round'/%3E%3C/svg%3E") 0 0, pointer;
   }
 }
 
